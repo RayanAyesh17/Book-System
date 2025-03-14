@@ -121,6 +121,7 @@ form .submit button:hover{
   color:#F4B6C2;
 }
 
-.check{
+.check p{
   margin-top: 20px;
+  color: #F4B6C2;
 }
