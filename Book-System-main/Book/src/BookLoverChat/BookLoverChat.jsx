@@ -62,7 +62,7 @@ const BookChat = () => {
       <div className="chat-card">
         <h1 className="chat-title">
           Book Chat
-          <img src="/Images/Book.png" alt="Book Chat Logo" className="chat-logo" />
+          <img src="/images/Book.png" alt="Book Chat Logo" className="chat-logo" />
         </h1>
         <div className="chat-messages">
           {messages.map((msg, index) => (

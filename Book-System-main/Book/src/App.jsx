@@ -4,6 +4,8 @@ import UserProfile from './UserProfile/UserProfile';
 import BookLoverChat from './BookLoverChat/BookLoverChat';
 import BookPage from './BookPages/BookPage';
 import BookDetails from './BookPages/BookDetails';
+import Login from './Login/Login'
+import SignUp from './SignUp/Signup'
 
 
 const App = () => {
