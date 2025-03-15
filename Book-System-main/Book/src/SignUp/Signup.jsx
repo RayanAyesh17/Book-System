@@ -1,71 +1,84 @@
-import './Signup.css'; 
-import {  useState } from 'react';
+import './Signup.css';
+import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import {auth, db, facebookProvider,googleProvider} from '../firebase';
-import { createUserWithEmailAndPassword , signInWithPopup} from"firebase/auth";
-import {collection, addDoc} from "firebase/firestore";
+import { auth, db, facebookProvider, googleProvider } from '../firebase';
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
+
 export default function SignUp() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName]=useState("");
+  const [name, setName] = useState("");
   const [username, setUsername] = useState("");
-  const user = auth.currentUser;
+
   const handleSign = async (e) => {
     e.preventDefault();
     try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email,password);
-    const user = userCredential.user;
-    await addDoc(collection(db, "users"), { 
-      uid:user.id,
-      name:name,
-      email: email,
-    username:username });
-    navigate(`../Home`);
-      
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      await addDoc(collection(db, "users"), { 
+        uid: user.uid,
+        name: name,
+        email: email,
+        username: username
+      });
+
+      navigate("/Home");  
+
     } catch (error) {
-    console.error("Error registering:", error.message);
+      console.error("Error registering:", error.message);
     }
-    };
-    const handleGoogleSignIn = async () => {
-      try {
-        const result = await signInWithPopup(auth, googleProvider);
-        const user = result.user;
-        await addDoc(collection(db, "users"), {
-          uid: user.id,
-          name: user.displayName,
-          email: user.email,
-          username: user.email.split("@")[0]
-        })
-        navigate("../Home");
-      } catch (error) {
-        console.error("Google Sign-In Error:", error.message);
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+
+      await addDoc(collection(db, "users"), {
+        uid: user.uid,
+        name: user.displayName,
+        email: user.email,
+        username: user.email.split("@")[0]
+      });
+
+      navigate("/Home");
+    } catch (error) {
+      console.error("Google Sign-In Error:", error.message);
+    }
+  };
+
+  const handleFacebookSignIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, facebookProvider);
+      const user = result.user;
+
+      await addDoc(collection(db, "users"), {
+        uid: user.uid,
+        name: user.displayName || "No Name",
+        email: user.email || "No Email",
+        username: user.email ? user.email.split("@")[0] : "facebook_user",
+        profilePicture: user.photoURL,
+        createdAt: new Date()
+      });
+
+      navigate("/Home");
+    } catch (error) {
+      console.error("Facebook Sign-In Error:", error.message);
+    }
+  };
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        navigate("/Home");
       }
-    };
-    const handleFacebookSignIn = async () => {
-      try {
-        const result = await signInWithPopup(auth, facebookProvider);
-        const user = result.user;
-    
-        await addDoc(collection(db, "users"), {
-          uid: user.uid,  
-          name: user.displayName || "No Name",
-          email: user.email || "No Email",
-          username: user.email ? user.email.split("@")[0] : "facebook_user",
-          profilePicture: user.photoURL, 
-          createdAt: new Date()
-        });
-    
-        console.log("Facebook Sign-In Success:", user);
-        navigate("../Home");
-    
-      } catch (error) {
-        console.error("Facebook Sign-In Error:", error.message);
-      }
-    };
-    
-        
-   
+    });
+
+    return () => unsubscribe();
+  }, [navigate]);
+
   return (
     <div className="main">
       <div className="image">
@@ -76,27 +89,27 @@ export default function SignUp() {
           <h1>Create Account</h1>
           <div className="buttons">
             <button type="button" onClick={handleGoogleSignIn}>Sign up with Google</button>
-            <button type="button" id='facebookButton'  onClick={handleFacebookSignIn} >Sign up with Facebook</button>
+            <button type="button" id='facebookButton' onClick={handleFacebookSignIn}>Sign up with Facebook</button>
           </div>
           <div className='emails'>
             <label htmlFor="name">Name</label>
-            <input type="text" id="name" name="name" onChange={(e)=>setName(e.target.value)}/>
-            
+            <input type="text" id="name" name="name" onChange={(e) => setName(e.target.value)} />
+
             <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" onChange={(e)=>setEmail(e.target.value)}/>
-            
+            <input type="email" id="email" name="email" onChange={(e) => setEmail(e.target.value)} />
+
             <label htmlFor="username">Username</label>
-            <input type="text" id="username" name="username" onChange={(e)=>setUsername(e.target.value)} />
-            
+            <input type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)} />
+
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" name="password" onChange={(e)=>setPassword(e.target.value)} />
+            <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)} />
           </div>
-          
+
           <div className="submit">
             <button type="submit" onClick={handleSign}>Sign up</button>
           </div>
           <div className="check">
-            <p>Already have an account? <a href="#" onClick={()=>navigate('/')}>Log in</a></p>
+            <p>Already have an account? <a href="#" onClick={() => navigate('/')}>Log in</a></p>
           </div>
         </form>
       </div>
