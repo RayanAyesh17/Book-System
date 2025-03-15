@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import StarRating from './StarRating';  
+import StarRating from '../../StarRating/StarRating';  
 import './BookDetails.css';
 
 const BookDetails = () => {
@@ -28,7 +28,7 @@ const BookDetails = () => {
         <h1 className="h1-detail">{book.title}</h1>
         <h2 className="h2-detail">by {book.author}</h2>
         <StarRating className='rate' rating={rating} onRatingChange={handleRatingChange} />
-        <p className='describe-design'>{book.description}</p>
+        <p>{book.description}</p>
         <div className="buttons">
           <button className="btn-completed btn-book">Completed</button>
           <button className="btn-reading btn-book">Reading</button>
