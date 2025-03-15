@@ -33,7 +33,7 @@
 
 
 .about-container {
-  max-width: 900px;
+  max-width: 100%;
   margin: auto;
   padding: 30px;
   background: linear-gradient(to right, #f8f3ed 45%, #e8dfd0 50%, #f8f3ed 55%);
@@ -173,6 +173,12 @@ h1 {
   margin-bottom: 30px;
   text-align: center;
 }
+.about-section .lays{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 .about-section .vision {
   display: flex;
   flex-direction: row;
@@ -211,6 +217,7 @@ h1 {
   gap: 60px;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .mission-circle {

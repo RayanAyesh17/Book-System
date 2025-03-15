@@ -34,12 +34,14 @@ const About = () => {
 
       
       <div className="about-section">
-    <div className="vision">
+  <div className="lays">
+  <div className="vision">
   <h1>Our Vision</h1>
     <p>
       To foster a community of lifelong learners who can share their passion for
       books, exchange knowledge, and create lasting friendships through the magic of reading.
     </p>
+  </div>
   </div>
 </div>
       <div className="about-sections">

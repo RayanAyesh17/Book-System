@@ -1,6 +1,7 @@
 import BookPage from './BookPages/BookPage';
 import BookDetails from './BookPages/BookDetails';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Login from './Login/Login';
 import SignUp from './SignUp/SignUp';
@@ -19,13 +20,10 @@ export default function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
-  const [showDropdown, setShowDropdown] = useState(false);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
-
-  const toggleDropdown = () => setShowDropdown(!showDropdown);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
@@ -39,9 +37,7 @@ export default function App() {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      setShowDropdown(false);
-      window.location.href = '/Home';
-
+      window.location.href = '/Home';  // Redirect to Home after logging out
     } catch (error) {
       console.error("Error logging out: ", error);
     }
@@ -49,9 +45,10 @@ export default function App() {
 
   return (
     <Router>
+   
       <Navbar expand="lg" bg="white" className="shadow-sm Navbar">
-        <Container>
-          <Navbar.Brand as={Link} to="/Home" className='nav-img'>
+        <Container className='yesin'>
+          <Navbar.Brand as={Link} to="/Home" className="nav-img">
             <img src="../../images/Logo.png" width="100px" alt="Logo" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -61,15 +58,15 @@ export default function App() {
 
               {isAuthenticated && (
                 <>
-                  <Nav.Link as={Link} to="/Library" className="me-3 navoa">Library</Nav.Link>
-                  <Nav.Link as={Link} to="/ChatApp" className="me-3 navoa">ChatApp</Nav.Link>
+                  <Nav.Link as={Link} to="/library" className="me-3 navoa">Library</Nav.Link>
+                  <Nav.Link as={Link} to="/chatapp" className="me-3 navoa">ChatApp</Nav.Link>
                 </>
               )}
 
               {!isAuthenticated ? (
                 <Nav.Link as={Link} to="/" className="me-3 navoa">Login</Nav.Link>
               ) : (
-                <Dropdown className='Nav-links'>
+                <Dropdown className="Nav-links">
                   <Dropdown.Toggle variant="link" id="dropdown-custom-components">
                     <img
                       src={user?.photoURL || '../../images/default.jpg'}
@@ -81,9 +78,9 @@ export default function App() {
                     />
                   </Dropdown.Toggle>
 
-                  <Dropdown.Menu className='drop'> 
-                    <Dropdown.Item className='dropitem' as={Link} to="/UserProfile" >Profile settings</Dropdown.Item>
-                    <Dropdown.Item className='dropitem' as="button" onClick={handleLogout}>Logout</Dropdown.Item>
+                  <Dropdown.Menu className="drop">
+                    <Dropdown.Item className="dropitem" as={Link} to="/UserProfile">Profile settings</Dropdown.Item>
+                    <Dropdown.Item className="dropitem" as="button" onClick={handleLogout}>Logout</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               )}
@@ -92,6 +89,7 @@ export default function App() {
         </Container>
       </Navbar>
 
+      {/* Routes */}
       <Routes>
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/" element={<Login />} />
@@ -100,9 +98,10 @@ export default function App() {
         <Route path="/library/:id" element={isAuthenticated ? <BookDetails /> : <Login />} />
         <Route path="/UserProfile" element={isAuthenticated ? <UserProfile user={user} /> : <Login />} />
         <Route path="/Home" element={<Home />} />
-        <Route path="/ChatApp" element={isAuthenticated ? <BookChat /> : <Login />} />
+        <Route path="/chatapp" element={isAuthenticated ? <BookChat /> : <Login />} />
       </Routes>
 
+      {/* Footer */}
       <Footer darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
     </Router>
   );

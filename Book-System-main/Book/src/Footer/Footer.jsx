@@ -17,7 +17,7 @@ const Footer = ({ darkMode, toggleDarkMode }) => {
           <h3>Quick Links</h3>
           <ul>
             <li><a href="/books">Library</a></li>
-            <li> <a  onClick={()=>navigate('/About')}>About Us</a></li>
+            <li> <a  href="/About">About Us</a></li>
             <li><a href="/book-lover-group">Book Lover Group</a></li>
           </ul>
         </div>
