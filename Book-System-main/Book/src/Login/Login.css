@@ -23,14 +23,14 @@ body {
   background-color: #f8f3ed; 
 }
 
-.image {
-  width: 37%;
+.imageLo {
+  width: 50%;
   display: flex;
   justify-content: center;
  transform: scaleX(-1);
 }
 
-.image img {
+.imageLo img {
   width: 100%;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -132,3 +132,20 @@ form .submit button:hover{
   margin-top: 20px;
 }
 
+
+@media screen and (max-width: 991px) {
+  .main {
+    flex-direction: column;
+    padding: 20px;
+    height: auto;
+  }
+
+  .imageLo  {
+    display: none;
+  }
+
+  .allmain {
+    width: 90%;
+    max-width: 400px;
+  }
+}

@@ -81,13 +81,13 @@ export default function SignUp() {
 
   return (
     <div className="main">
-      <div className="image">
+      <div className="imageop">
         <img src="../../images/flowimage.png" id="imgo" alt="Flow image" />
       </div>
       <div className="allmain">
         <form action="" method="POST">
           <h1>Create Account</h1>
-          <div className="buttons">
+          <div className="buttonsSig">
             <button type="button" onClick={handleGoogleSignIn}>Sign up with Google</button>
             <button type="button" id='facebookButton' onClick={handleFacebookSignIn}>Sign up with Facebook</button>
           </div>
