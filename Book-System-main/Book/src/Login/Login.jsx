@@ -12,7 +12,6 @@ export default function Login() {
     e.preventDefault();
     try{
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const email = userCredential.user.email;
       navigate(`../Home`);
     }catch(error){
       console.error("Error logging in:", error.message);

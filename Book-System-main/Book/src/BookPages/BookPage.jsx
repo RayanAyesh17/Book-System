@@ -95,7 +95,7 @@ const BookPage = () => {
   const [selectedGenre, setSelectedGenre] = useState('');
 
   const handleReadClick = (book) => {
-    navigate(`/book/${book.id}`, {
+    navigate(`/library/${book.id}`, {
       state: {
         book: { ...book }
       }
