@@ -1,7 +1,6 @@
-
 import BookPage from './BookPages/BookPage';
 import BookDetails from './BookPages/BookDetails';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Login from './Login/Login';
 import SignUp from './SignUp/SignUp';
@@ -10,7 +9,6 @@ import Home from './Home/Home';
 import Footer from './Footer/Footer';
 import UserProfile from './UserProfile/UserProfile';
 import BookChat from './BookLoverChat/BookLoverChat';
-// import BookPage from './BookPage/BookPage';
 import { auth, signOut } from './firebase';
 import './App.css';
 import '@fortawesome/fontawesome-free/css/all.css';
@@ -42,7 +40,8 @@ export default function App() {
     try {
       await signOut(auth);
       setShowDropdown(false);
-      navigate('/');
+      window.location.href = '/Home';
+
     } catch (error) {
       console.error("Error logging out: ", error);
     }
@@ -71,7 +70,7 @@ export default function App() {
                 <Nav.Link as={Link} to="/" className="me-3 navoa">Login</Nav.Link>
               ) : (
                 <Dropdown className='Nav-links'>
-                  <Dropdown.Toggle variant="link" id="dropdown-custom-components" >
+                  <Dropdown.Toggle variant="link" id="dropdown-custom-components">
                     <img
                       src={user?.photoURL || '../../images/default.jpg'}
                       alt="Profile"
