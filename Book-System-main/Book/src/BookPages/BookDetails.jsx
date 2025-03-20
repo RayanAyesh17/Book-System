@@ -11,8 +11,12 @@ const BookDetails = () => {
 
   const handleRatingChange = (newRating) => {
     setRating(newRating);
-   
     console.log(`New Rating: ${newRating}`);
+  };
+
+  const handleReadNowClick = () => {
+    // Open the PDF in a new tab
+    window.open(book.pdfUrl, '_blank');
   };
 
   return (
@@ -20,7 +24,7 @@ const BookDetails = () => {
       <div className="img-con">
         <img src={book.image} alt={book.title} className="book-cover" />
         <div>
-          <button className="btn-read-now">Read Now</button>
+          <button className="btn-read-now" onClick={handleReadNowClick}>Read Now</button>
         </div>
       </div>
       
