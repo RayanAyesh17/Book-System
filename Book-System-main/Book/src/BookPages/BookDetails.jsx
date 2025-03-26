@@ -28,7 +28,7 @@ const BookDetails = ({ addToBookshelf }) => {
   return (
     <div className="book-details">
     <div className="img-con">
-      <div className="back-button" onClick={() => navigate('/')}>
+      <div className="back-button" onClick={() => navigate('/library')}>
         <FaArrowLeft className="back-icon" />
         <span className="back-text">Back to library</span>
       </div>
