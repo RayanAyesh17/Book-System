@@ -10,6 +10,7 @@ body {
     text-align: center;
     height: auto;
     margin-bottom: -19px;
+    position: relative;
   }
   
   .book-details .book-cover {
@@ -95,7 +96,7 @@ body {
     background-color: black;
     color: #F4B6C2;
     border-radius: 14px;
-    
+
   }
   .comment-box {
     width: 100%;
@@ -133,4 +134,29 @@ body {
     transform: translateX(370px);
   
   }
-  
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  top: 10px;
+  left: 10px; 
+  cursor: pointer;
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  border-radius: 10px;
+}
+.back-icon {
+  font-size: 24px;
+}
+.back-text {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.back-button:hover .back-text {
+  opacity: 1;
+  transform: translateX(0);
+}
