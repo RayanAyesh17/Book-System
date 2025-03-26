@@ -11,12 +11,6 @@ const BookDetails = () => {
 
   const handleRatingChange = (newRating) => {
     setRating(newRating);
-<<<<<<< HEAD
-   
-    console.log(`New Rating: ${newRating}`);
-  };
-
-=======
     console.log(`New Rating: ${newRating}`);
   };
 
@@ -25,17 +19,12 @@ const BookDetails = () => {
     window.open(book.pdfUrl, '_blank');
   };
 
->>>>>>> 0722b33c5e4224974ece5e0377affbda7903e0a1
   return (
     <div className="book-details">
       <div className="img-con">
         <img src={book.image} alt={book.title} className="book-cover" />
         <div>
-<<<<<<< HEAD
-          <button className="btn-read-now">Read Now</button>
-=======
           <button className="btn-read-now" onClick={handleReadNowClick}>Read Now</button>
->>>>>>> 0722b33c5e4224974ece5e0377affbda7903e0a1
         </div>
       </div>
       
@@ -59,8 +48,4 @@ const BookDetails = () => {
   );
 };
 
-<<<<<<< HEAD
 export default BookDetails;
-=======
-export default BookDetails;
->>>>>>> 0722b33c5e4224974ece5e0377affbda7903e0a1
