@@ -11,7 +11,6 @@ const BookDetails = ({ addToBookshelf }) => {
 
   const handleStatusChange = (status) => {
     addToBookshelf(book, status);
-    alert(`Book added to ${status}!`);
   };
 
   const [rating, setRating] = useState(book.rating);

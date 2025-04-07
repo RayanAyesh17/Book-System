@@ -92,6 +92,27 @@ body.dark-mode .footer-links a:hover,
 body.dark-mode .footer-social a:hover {
     color: #f4b6c2;
 }
+.main-content {
+    min-height: calc(100vh - 120px); /* Adjust based on your header/footer height */
+    transition: all 0.3s ease;
+  }
+  
+  .profile-img {
+    object-fit: cover;
+    transition: all 0.3s ease;
+  }
+  
+  .dropitem {
+    transition: all 0.2s ease;
+  }
+  
+  .dropitem:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .bg-dark .dropitem:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 @media (max-width: 991px) {
   .Navbar .navbar-collapse {
       transition: max-height 0.3s ease-in-out;

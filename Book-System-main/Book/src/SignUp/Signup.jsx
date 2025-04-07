@@ -21,7 +21,8 @@ export default function SignUp() {
         uid: user.uid,
         name: name,
         email: email,
-        username: username
+        username: username,
+        createdAt: new Date() 
       });
 
       navigate("/");  
@@ -40,7 +41,8 @@ export default function SignUp() {
         uid: user.uid,
         name: user.displayName,
         email: user.email,
-        username: user.email.split("@")[0]
+        username: user.email.split("@")[0],
+        createdAt: new Date() 
       });
 
       navigate("/");

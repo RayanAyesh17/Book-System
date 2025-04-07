@@ -1,12 +1,12 @@
-/* BookLoverChat.css */
-
 /* Gradient background for the whole chat container */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
 body {
-  font-family:'Poppins',sans-serif;
+  font-family: 'Poppins', sans-serif;
+  
 }
+
 .chat-container {
-  background: #f8f3ed; /* Baby pink to baby blue gradient */
+  background: linear-gradient(to right, #f8f3ed, #e9b4bc);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,14 +15,17 @@ body {
   color: #333;
 }
 
-/* Card-style for chat box */
+/* Chat box style with larger size */
 .chat-card {
   background: #ffffff;
   border-radius: 15px;
   padding: 30px;
   width: 100%;
-  max-width: 600px;
+  max-width: 800px; /* Increased width */
+  height: 500px; /* Increased height */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
 }
 
 /* Title with colorful effect */
@@ -37,13 +40,13 @@ body {
 }
 
 .chat-title img {
-  width: 70px; /* Logo size */
-  margin-left: 15px; /* Space between the logo and the text */
+  width: 50px; /* Avatar size reduced to a logo size */
+  margin-left: 10px; /* Reduced space between the logo and text */
 }
 
 /* Messages display section */
 .chat-messages {
-  height: 300px;
+  flex-grow: 1;
   overflow-y: auto;
   margin-bottom: 20px;
   padding-right: 10px;
@@ -69,6 +72,15 @@ body {
   background-color: #ADD8E6; /* Baby blue for others' messages */
   text-align: left;
   margin-right: 20px;
+}
+
+/* Avatar adjustments inside the chat bubble */
+.avatar {
+  width: 40px; /* Reduced avatar size */
+  height: 40px; /* Maintain aspect ratio */
+  border-radius: 50%; /* Circular avatar */
+  margin-right: 10px; /* Space between the avatar and the message */
+  display: inline-block;
 }
 
 /* Input and button styling */
