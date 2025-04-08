@@ -245,7 +245,7 @@ const BookPage = () => {
             rating="★★★★☆"
             image ={mice}
             description="A poignant tale of friendship between two displaced ranch workers, George and Lennie, during the Great Depression. The story explores themes of dreams, loneliness, and the struggle for a better life."
-            onRead={() => handleReadClick({ id: 14, title: "From Mice & Men", author: "John Steinbeck", description: "A poignant tale of friendship between two displaced ranch workers, George and Lennie, during the Great Depression. The story explores themes of dreams, loneliness, and the struggle for a better life.", image: mice, pdfUrl: 'https://your-supabase-url/storage/v1/object/public/pdfs/from_mice_and_men.pdf' })}
+            onRead={() => handleReadClick({ id: 14, title: "From Mice & Men", author: "John Steinbeck", description: "A poignant tale of friendship between two displaced ranch workers, George and Lennie, during the Great Depression. The story explores themes of dreams, loneliness, and the struggle for a better life.", image: mice, pdfUrl: 'https://bnkghjzfdnuqlqpbysvd.supabase.co/storage/v1/object/public/books//of-mice-and-men-john-steinbeck.pdf' })}
           />
           <BookCard
             title="The Great Gatsby"
@@ -253,7 +253,7 @@ const BookPage = () => {
             rating="★★★★★"
             image={great}
             description="The Great Gatsby is a novel set in the Roaring Twenties that follows the life of Jay Gatsby, a mysterious millionaire, and his obsession with the beautiful Daisy Buchanan. Through the eyes of narrator Nick Carraway, the story explores themes of wealth, love, and the American Dream, ultimately revealing the moral decay hidden beneath the glittering surface of society."
-            onRead={() => handleReadClick({ id: 15, title: "The Great Gatsby", author: "Scott Fitzgerald", description: "The Great Gatsby is a novel set in the Roaring Twenties that follows the life of Jay Gatsby, a mysterious millionaire, and his obsession with the beautiful Daisy Buchanan. Through the eyes of narrator Nick Carraway, the story explores themes of wealth, love, and the American Dream, ultimately revealing the moral decay hidden beneath the glittering surface of society", image: great, pdfUrl: 'https://your-supabase-url/storage/v1/object/public/pdfs/the_great_gatsby.pdf' })}
+            onRead={() => handleReadClick({ id: 15, title: "The Great Gatsby", author: "Scott Fitzgerald", description: "The Great Gatsby is a novel set in the Roaring Twenties that follows the life of Jay Gatsby, a mysterious millionaire, and his obsession with the beautiful Daisy Buchanan. Through the eyes of narrator Nick Carraway, the story explores themes of wealth, love, and the American Dream, ultimately revealing the moral decay hidden beneath the glittering surface of society", image: great, pdfUrl: 'https://bnkghjzfdnuqlqpbysvd.supabase.co/storage/v1/object/public/books//the-great-gatsby-f-scott-fitzgerald.pdf' })}
           />
           <BookCard
             title="The Art of War"
@@ -261,7 +261,7 @@ const BookPage = () => {
             rating="★★★★★"
             image={war}
             description="The Art of War is an ancient Chinese military treatise that offers strategic insights on warfare and conflict management. It emphasizes the importance of adaptability, deception, and understanding the enemy, making it relevant not only in military contexts but also in business and personal strategy."
-            onRead={() => handleReadClick({ id: 13, title: 'The Art of War', author: 'Sun Tzu', rating: '★★★★★', image: war, description: 'The Art of War is an ancient Chinese military treatise that offers strategic insights on warfare and conflict management. It emphasizes the importance of adaptability, deception, and understanding the enemy, making it relevant not only in military contexts but also in business and personal strategy.', pdfUrl: 'https://your-supabase-url/storage/v1/object/public/pdfs/the_art_of_war.pdf' })}
+            onRead={() => handleReadClick({ id: 13, title: 'The Art of War', author: 'Sun Tzu', rating: '★★★★★', image: war, description: 'The Art of War is an ancient Chinese military treatise that offers strategic insights on warfare and conflict management. It emphasizes the importance of adaptability, deception, and understanding the enemy, making it relevant not only in military contexts but also in business and personal strategy.', pdfUrl: 'https://bnkghjzfdnuqlqpbysvd.supabase.co/storage/v1/object/public/books//The-Art-of-War-Sun-Tzu.pdf' })}
           />
           <BookCard
             title="Dracula"
@@ -269,7 +269,7 @@ const BookPage = () => {
             rating="★★★☆☆"
             image={Draculla}
             description="Dracula is a classic horror novel that tells the story of Count Dracula’s attempt to move from Transylvania to England in search of new blood. The narrative unfolds through letters, diary entries, and newspaper articles, creating a chilling atmosphere of suspense and dread as a group of people, led by Professor Abraham Van Helsing, try to stop him."
-            onRead={() => handleReadClick({ id: 12, title: 'Dracula', author: 'Bram Stoker', rating: '★★★☆☆', image: Draculla, description: 'Dracula is a classic horror novel that tells the story of Count Dracula’s attempt to move from Transylvania to England in search of new blood. The narrative unfolds through letters, diary entries, and newspaper articles, creating a chilling atmosphere of suspense and dread as a group of people, led by Professor Abraham Van Helsing, try to stop him.', pdfUrl: 'https://your-supabase-url/storage/v1/object/public/pdfs/dracula.pdf' })}
+            onRead={() => handleReadClick({ id: 12, title: 'Dracula', author: 'Bram Stoker', rating: '★★★☆☆', image: Draculla, description: 'Dracula is a classic horror novel that tells the story of Count Dracula’s attempt to move from Transylvania to England in search of new blood. The narrative unfolds through letters, diary entries, and newspaper articles, creating a chilling atmosphere of suspense and dread as a group of people, led by Professor Abraham Van Helsing, try to stop him.', pdfUrl: 'https://bnkghjzfdnuqlqpbysvd.supabase.co/storage/v1/object/public/books//dracula-bram-stoker.pdf' })}
           />
         </div>
       </div>
