@@ -16,9 +16,8 @@ const Footer = ({ darkMode, toggleDarkMode }) => {
         <div className="footer-links">
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="/books">Library</a></li>
+            <li><a href="/">Home</a></li>
             <li> <a  href="/About">About Us</a></li>
-            <li><a href="/book-lover-group">Book Lover Group</a></li>
           </ul>
         </div>
 
@@ -32,12 +31,7 @@ const Footer = ({ darkMode, toggleDarkMode }) => {
           </ul>
           
         </div>
-        <div className="mode-toggle">
-          
-          <span className="mode-icon">
-            {darkMode ? <FaSun /> : <FaMoon />} 
-          </span>
-        </div>
+        
       </div>
    
       

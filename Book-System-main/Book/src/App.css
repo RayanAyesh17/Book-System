@@ -11,13 +11,14 @@
     margin-top: 40px;
     display: flex;
     align-items: center;
-    background-color: white;
+    background-color: var(--navbar-bg);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     height: 50px;
     justify-content: space-evenly;
     z-index: 900;
     position: relative; 
 }
+
 
 .nav-img {
     z-index: 1000;
@@ -38,7 +39,7 @@
     margin-left: 10px;
 }
 
-.Nav-links .navoa {
+.Nav-links #navoa {
     text-decoration: none;
     color: #F4B6C2;
     font-weight: 500;
@@ -69,7 +70,6 @@
     color: white;
 }
 
-/* Dark mode styles */
 body.dark-mode {
     background-color: #1e272e;
     color: #ecf0f1;
@@ -93,7 +93,7 @@ body.dark-mode .footer-social a:hover {
     color: #f4b6c2;
 }
 .main-content {
-    min-height: calc(100vh - 120px); /* Adjust based on your header/footer height */
+    min-height: calc(100vh - 120px); 
     transition: all 0.3s ease;
   }
   

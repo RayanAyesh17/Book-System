@@ -131,6 +131,23 @@ form .submit button:hover{
 .check{
   margin-top: 20px;
 }
+.error-message {
+  color: #ff4d4f;
+  background-color: #ffe6e6;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.success-message {
+  color: #52c41a;
+  background-color: #e6ffed;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 15px;
+  text-align: center;
+}
 
 
 @media screen and (max-width: 991px) {

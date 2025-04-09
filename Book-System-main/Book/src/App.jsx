@@ -126,23 +126,23 @@ export default function App() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto d-flex align-items-center Nav-links">
-              <Nav.Link as={Link} to="/about" className={`me-3 navoa ${darkMode ? 'text-light' : 'text-dark'}`}>
+              <Nav.Link as={Link} to="/about" id="navoa" className={`me-3 navoa ${darkMode ? 'text-light' : 'text-dark'}`}>
                 About
               </Nav.Link>
 
               {isAuthenticated && (
                 <>
-                  <Nav.Link as={Link} to="/library" className={`me-3 navoa ${darkMode ? 'text-light' : 'text-dark'}`}>
+                  <Nav.Link as={Link} to="/library" id="navoa" className={`me-3 navoa ${darkMode ? 'text-light' : 'text-dark'}`}>
                     Library
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/chatapp" className={`me-3 navoa ${darkMode ? 'text-light' : 'text-dark'}`}>
+                  <Nav.Link as={Link} to="/chatapp" id="navoa" className={`me-3 navoa ${darkMode ? 'text-light' : 'text-dark'}`}>
                     ChatApp
                   </Nav.Link>
                 </>
               )}
 
               {!isAuthenticated ? (
-                <Nav.Link as={Link} to="/login" className={`me-3 navoa ${darkMode ? 'text-light' : 'text-dark'}`}>
+                <Nav.Link as={Link} to="/login" id="navoa"className={`me-3 navoa ${darkMode ? 'text-light' : 'text-dark'}`}>
                   Login
                 </Nav.Link>
               ) : (
