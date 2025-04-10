@@ -1,8 +1,11 @@
 import './Login.css'; 
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react'; 
-import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth, db, facebookProvider, googleProvider } from '../firebase';
+import {  signInWithPopup } from "firebase/auth";
+import { getDoc, doc, setDoc } from "firebase/firestore";
+
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -34,13 +37,74 @@ export default function Login() {
       setErrorMessage(errorMessages[error.code] || `Login failed. Please try again. [${error.code}]`);
     }
   };
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
 
+      const userRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(userRef);
+      if(!docSnap.exists()){
+        await setDoc(userRef,{
+          uid:user.uid,
+          name:user.displayName,
+          email:user.email,
+          username:user.email.split("@")[0],
+          createAt:new Date(),
+
+        });
+      }
+      setSuccessMessage("Google sign-in successful! Redirecting...");
+      setTimeout(() => navigate("/"), 1500);
+  
+    } catch (error) {
+      console.error("Google Sign-In Error:", error.message);
+      setErrorMessage("Google sign-in failed. Please try again.");
+
+    }
+  };
+
+  const handleFacebookSignIn = async () => {
+    setErrorMessage("");
+    setSuccessMessage("");  
+    try {
+      const result = await signInWithPopup(auth, facebookProvider);
+      const user = result.user;
+    const userDoc = doc(db, "users", user.uid);
+    const docSnap = await getDoc(userDoc);
+
+    if (!docSnap.exists()) {
+      await setDoc(userDoc, {
+        uid: user.uid,
+        name: user.displayName || "Facebook User",
+        email: user.email || "No Email",
+        username: user.email ? user.email.split("@")[0] : "facebook_user",
+        profilePicture: user.photoURL,
+        createdAt: new Date()
+      });
+    }
+    setSuccessMessage("Facebook sign-in successful! Redirecting...");
+    setTimeout(() => navigate("/"), 1500);
+
+      } catch (error) {
+        console.error("Facebook Sign-In Error:", error.message);
+        if (error.code === "auth/account-exists-with-different-credential") {
+          setErrorMessage("This email is already registered with another login method. Try using Google or Email/Password.");
+        } else {
+          setErrorMessage("Facebook sign-in failed. Please try again.");
+        }
+    
+      }
+};
   return (
     <div className="main">
       <div className="allmain">
         <form onSubmit={handleLogin}>
           <h1>Login</h1>
-
+          <div className="buttonsSig">
+            <button type="button" onClick={handleGoogleSignIn}>Continue with Google</button>        
+            <button type="button" id='facebookButton' onClick={handleFacebookSignIn}>Continue with Facebook</button>
+            </div>
           <div className='emails'>
             <label htmlFor="email">Email</label>
             <input

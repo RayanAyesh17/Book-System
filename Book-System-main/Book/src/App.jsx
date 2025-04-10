@@ -9,7 +9,7 @@ import Home from './Home/Home';
 import Footer from './Footer/Footer';
 import UserProfile from './UserProfile/UserProfile';
 import BookChat from './BookLoverChat/BookLoverChat';
-import { auth, signOut, db} from './firebase';
+import { auth, signOut, db } from './firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import './App.css';
 import '@fortawesome/fontawesome-free/css/all.css';
@@ -18,6 +18,7 @@ import { Dropdown, Navbar, Nav, Container } from 'react-bootstrap';
 import Bookshelf from './BookShelf/BookShelf';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Modal, Button } from 'react-bootstrap';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -26,6 +27,7 @@ export default function App() {
   const [completedBooks, setCompletedBooks] = useState([]);
   const [currentlyReading, setCurrentlyReading] = useState([]);
   const [wishlist, setWishlist] = useState([]);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -38,44 +40,42 @@ export default function App() {
       setUser(currentUser);
       if (currentUser) {
         try {
-          const userRef = doc(db, "users", currentUser.uid);
+          const userRef = doc(db, 'users', currentUser.uid);
           const userSnap = await getDoc(userRef);
-  
+
           if (userSnap.exists()) {
             const userData = userSnap.data();
             toast.success(`Welcome back, ${userData.name}!`);
-          } 
+          }
         } catch (err) {
-          console.error("Error fetching user profile:", err.message);
-          toast.success(`Welcome back, User!`);
+          console.error('Error fetching user profile:', err.message);
+          toast.success('Welcome back, User!');
         }
       }
     });
-  
+
     return () => unsubscribe();
   }, []);
-  
-  
 
   const handleLogout = async () => {
     try {
       await signOut(auth);
       toast.info('Logged out successfully');
-      window.location.href = '/';  
+      window.location.href = '/';
     } catch (error) {
-      console.error("Error logging out: ", error);
+      console.error('Error logging out: ', error);
       toast.error('Failed to logout');
     }
   };
 
   const moveToCompleted = (book) => {
-    setCurrentlyReading(prev => prev.filter(b => b.id !== book.id)); 
+    setCurrentlyReading(prev => prev.filter(b => b.id !== book.id));
     setCompletedBooks(prev => [...prev, book]);
     toast.success(`Moved "${book.title}" to Completed`);
   };
-  
+
   const moveToReading = (book) => {
-    setWishlist(prev => prev.filter(b => b.id !== book.id)); 
+    setWishlist(prev => prev.filter(b => b.id !== book.id));
     setCurrentlyReading(prev => [...prev, book]);
     toast.success(`Moved "${book.title}" to Currently Reading`);
   };
@@ -84,7 +84,7 @@ export default function App() {
     setCompletedBooks(prev => prev.filter(b => b.id !== book.id));
     setCurrentlyReading(prev => prev.filter(b => b.id !== book.id));
     setWishlist(prev => prev.filter(b => b.id !== book.id));
-  
+
     if (status === 'completed') {
       setCompletedBooks(prev => [...prev, book]);
       toast.success(`Added "${book.title}" to Completed Books`);
@@ -97,10 +97,38 @@ export default function App() {
     }
   };
 
+  const handleConfirmLogout = () => {
+    setShowLogoutConfirm(true); 
+  };
+
+  const handleCancelLogout = () => {
+    setShowLogoutConfirm(false);
+  };
+
+  const handleLogoutConfirm = () => {
+    setShowLogoutConfirm(false); 
+    handleLogout();
+  };
+
   return (
     <Router>
+      <Modal show={showLogoutConfirm } className='modelN' onHide={handleCancelLogout}>
+          <div className='model'>
+          <Modal.Body className='bodyModel'>Are you sure you want to log out?</Modal.Body>
+
+          <div className="btnModel">
+          <Button variant="secondary" onClick={handleCancelLogout}>
+            No, Stay
+          </Button>
+          <Button variant="primary" onClick={handleLogoutConfirm}>
+            Yes, Logout
+          </Button>
+          </div>
+          </div>
+      </Modal>
+
       {/* Toast Container for notifications */}
-      <ToastContainer 
+      <ToastContainer
         position="bottom-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -114,14 +142,9 @@ export default function App() {
       />
 
       <Navbar expand="lg" bg={darkMode ? 'dark' : 'white'} variant={darkMode ? 'dark' : 'light'} className="shadow-sm Navbar">
-        <Container className='yesin'>
+        <Container className="yesin">
           <Navbar.Brand as={Link} to="/" className="nav-img">
-            <img 
-              src="../../images/Logo.png" 
-              width="100px" 
-              alt="Logo" 
-              style={{ filter: darkMode ? 'invert(1)' : 'none' }} 
-            />
+            <img src="../../images/Logo.png" width="100px" alt="Logo" style={{ filter: darkMode ? 'invert(1)' : 'none' }} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -142,7 +165,7 @@ export default function App() {
               )}
 
               {!isAuthenticated ? (
-                <Nav.Link as={Link} to="/login" id="navoa"className={`me-3 navoa ${darkMode ? 'text-light' : 'text-dark'}`}>
+                <Nav.Link as={Link} to="/login" id="navoa" className={`me-3 navoa ${darkMode ? 'text-light' : 'text-dark'}`}>
                   Login
                 </Nav.Link>
               ) : (
@@ -154,42 +177,42 @@ export default function App() {
                       className="profile-img"
                       width="50px"
                       height="50px"
-                      style={{ 
-                        cursor: 'pointer', 
+                      style={{
+                        cursor: 'pointer',
                         borderRadius: '50%',
-                        border: darkMode ? '2px solid #fff' : '2px solid #333'
+                        border: darkMode ? '2px solid #fff' : '2px solid #333',
                       }}
                     />
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu className={`drop ${darkMode ? 'bg-dark' : 'bg-light'}`}>
-                    <Dropdown.Item 
-                      className={`dropitem ${darkMode ? 'text-light' : 'text-dark'}`} 
-                      as={Link} 
+                    <Dropdown.Item
+                      className={`dropitem ${darkMode ? 'text-light' : 'text-dark'}`}
+                      as={Link}
                       to="/UserProfile"
                     >
                       <i className="fas fa-user-cog me-2"></i> Profile
                     </Dropdown.Item>
-                    <Dropdown.Item 
-                      className={`dropitem ${darkMode ? 'text-light' : 'text-dark'}`} 
-                      as={Link} 
+                    <Dropdown.Item
+                      className={`dropitem ${darkMode ? 'text-light' : 'text-dark'}`}
+                      as={Link}
                       to="/bookshelf"
                     >
                       <i className="fas fa-book me-2"></i> Bookshelf
                     </Dropdown.Item>
                     <Dropdown.Divider />
-                    <Dropdown.Item 
-                      className={`dropitem ${darkMode ? 'text-light' : 'text-dark'}`} 
-                      as="button" 
+                    <Dropdown.Item
+                      className={`dropitem ${darkMode ? 'text-light' : 'text-dark'}`}
+                      as="button"
                       onClick={toggleDarkMode}
                     >
                       <i className={`fas ${darkMode ? 'fa-sun' : 'fa-moon'} me-2`}></i>
                       {darkMode ? 'Light Mode' : 'Dark Mode'}
                     </Dropdown.Item>
-                    <Dropdown.Item 
-                      className={`dropitem ${darkMode ? 'text-light' : 'text-dark'}`} 
-                      as="button" 
-                      onClick={handleLogout}
+                    <Dropdown.Item
+                      className={`dropitem ${darkMode ? 'text-light' : 'text-dark'}`}
+                      as="button"
+                      onClick={handleConfirmLogout}
                     >
                       <i className="fas fa-sign-out-alt me-2"></i> Logout
                     </Dropdown.Item>
@@ -207,20 +230,14 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About darkMode={darkMode} />} />
           <Route path="/library" element={isAuthenticated ? <BookPage darkMode={darkMode} /> : <Login />} />
-          <Route 
-            path="/library/:id" 
-            element={isAuthenticated ? <BookDetails addToBookshelf={addToBookshelf} darkMode={darkMode} /> : <Login />} 
-          />
-          <Route 
-            path="/UserProfile" 
-            element={isAuthenticated ? <UserProfile user={user} darkMode={darkMode} /> : <Login />} 
-          />
+          <Route path="/library/:id" element={isAuthenticated ? <BookDetails addToBookshelf={addToBookshelf} darkMode={darkMode} /> : <Login />} />
+          <Route path="/UserProfile" element={isAuthenticated ? <UserProfile user={user} darkMode={darkMode} /> : <Login />} />
           <Route path="/" element={<Home darkMode={darkMode} />} />
           <Route path="/chatapp" element={isAuthenticated ? <BookChat darkMode={darkMode} /> : <Login />} />
-          <Route 
-            path="/bookshelf" 
+          <Route
+            path="/bookshelf"
             element={isAuthenticated ? (
-              <Bookshelf  
+              <Bookshelf
                 completedBooks={completedBooks}
                 currentlyReading={currentlyReading}
                 wishlist={wishlist}
@@ -228,7 +245,7 @@ export default function App() {
                 onMoveToReading={moveToReading}
                 darkMode={darkMode}
               />
-            ) : <Login />} 
+            ) : <Login />}
           />
         </Routes>
       </div>

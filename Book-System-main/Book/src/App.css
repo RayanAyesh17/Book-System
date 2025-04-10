@@ -11,14 +11,13 @@
     margin-top: 40px;
     display: flex;
     align-items: center;
-    background-color: var(--navbar-bg);
+    background-color: #F4B6C2; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     height: 50px;
     justify-content: space-evenly;
     z-index: 900;
     position: relative; 
 }
-
 
 .nav-img {
     z-index: 1000;
@@ -41,7 +40,7 @@
 
 .Nav-links #navoa {
     text-decoration: none;
-    color: #F4B6C2;
+    color: #FFFFFF; 
     font-weight: 500;
     font-size: 1.1rem;
     margin-left: 90px;
@@ -90,55 +89,96 @@ body.dark-mode .footer-social a {
 
 body.dark-mode .footer-links a:hover,
 body.dark-mode .footer-social a:hover {
-    color: #f4b6c2;
+    color: #F4B6C2;
 }
+
 .main-content {
     min-height: calc(100vh - 120px); 
     transition: all 0.3s ease;
-  }
-  
-  .profile-img {
+}
+
+.profile-img {
     object-fit: cover;
     transition: all 0.3s ease;
-  }
-  
-  .dropitem {
-    transition: all 0.2s ease;
-  }
-  
-  .dropitem:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-  
-  .bg-dark .dropitem:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-@media (max-width: 991px) {
-  .Navbar .navbar-collapse {
-      transition: max-height 0.3s ease-in-out;
-      max-height: 0;
-      overflow: hidden;
-      position: absolute;
-      top: 50px;
-      left: 0;
-      width: 100%;
-  }
+}
 
-  .Navbar .navbar-collapse.show {
-      max-height: 500px; 
-  }
+.dropitem {
+    transition: all 0.2s ease;
+}
+
+.dropitem:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.bg-dark .dropitem:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.modelN .model{
+    border-radius: 10px;
+}
+
+.model{
+    background-color: #F4B6C2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    color: white;
+}
+.model .bodyModel{
+    font-size: 22px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    text-align: center;
+}
+.model button{
+margin: 0px 20px;
+font-size: 16px;
+}
+.model button:first-child{
+    background-color: #F4B6C2;
+    border: 2px solid white;
+}
+
+.model button:first-child:hover{
+    background-color: white;
+    color: #F4B6C2;
+    border: 2px solid #F4B6C2;
+}
+.model button:last-child{
+    background-color: white;
+    color: #F4B6C2;
+    border: 2px solid #F4B6C2;
+}
+.model button:last-child:hover{
+    background-color: #F4B6C2;
+    border: 2px solid white;
+    color: white;
+}
+@media (max-width: 991px) {
+    .Navbar .navbar-collapse {
+        transition: max-height 0.3s ease-in-out;
+        max-height: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+    }
+
+    .Navbar .navbar-collapse.show {
+        max-height: 500px; 
+    }
 }
 
 @media (min-width: 992px) {
-
     .Navbar .navbar-collapse {
         position: relative;
         max-height: none;
         display: flex !important;
         flex-grow: 1;
-      
     }
-
 
     .Navbar .navbar-nav {
         display: flex;
@@ -159,45 +199,46 @@ body.dark-mode .footer-social a:hover {
     .Navbar .navbar-collapse {
         display: none; 
     }
- 
-   .Navbar .yesin{
-      margin-top: -50px;
+
+    .Navbar .yesin {
+        margin-top: -50px;
     }
-    .Navbar .yesin .nav-img img{
-      width: 80px;
+
+    .Navbar .yesin .nav-img img {
+        width: 80px;
     }
+
     .Navbar .navbar-nav .navoa {
-      color: white;
-  }
+        color: white;
+    }
 
     .Navbar .navbar-collapse.show {
         display: block; 
-        background-color: #f4b6c2bc;
-
+        background-color: #F4B6C2BC;
     }
 }
 
 @media (max-width: 551px) {
-  .Navbar .navbar-collapse {
-      display: none; 
-  }
+    .Navbar .navbar-collapse {
+        display: none; 
+    }
 
- .Navbar .yesin{
-    margin-top: -50px;
-    margin-left: -50px;
-  }
-  .Navbar .yesin .nav-img img{
-    width: 80px;
-  }
-  .Navbar .navbar-nav .navoa {
-    color: white;
-    
+    .Navbar .yesin {
+        margin-top: -50px;
+        margin-left: -50px;
+    }
+
+    .Navbar .yesin .nav-img img {
+        width: 80px;
+    }
+
+    .Navbar .navbar-nav .navoa {
+        color: white;
+    }
+
+    .Navbar .navbar-collapse.show {
+        display: block; 
+        background-color: #F4B6C2BC;
+        padding-right: 50px;
+    }
 }
-
-  .Navbar .navbar-collapse.show {
-      display: block; 
-      background-color: #f4b6c2bc;
-      padding-right: 50px;
-  }
-}
-

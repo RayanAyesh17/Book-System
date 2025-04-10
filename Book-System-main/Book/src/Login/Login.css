@@ -132,7 +132,7 @@ form .submit button:hover{
   margin-top: 20px;
 }
 .error-message {
-  color: #ff4d4f;
+  color: #F4B6C2;
   background-color: #ffe6e6;
   padding: 10px;
   border-radius: 5px;
@@ -141,8 +141,8 @@ form .submit button:hover{
 }
 
 .success-message {
-  color: #52c41a;
-  background-color: #e6ffed;
+  color: #F4B6C2;
+  background-color: #ffe6e6;
   padding: 10px;
   border-radius: 5px;
   margin-top: 15px;
@@ -165,4 +165,29 @@ form .submit button:hover{
     width: 90%;
     max-width: 400px;
   }
+}
+
+.buttonsSig {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+form .buttonsSig button {
+  width: 48%;
+  padding: 10px;
+  background-color: #F4B6C2 ; 
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form .buttonsSig button:hover {
+  background: none; 
+  color:#F4B6C2;
+  font-weight: 700;
+  border: 1px solid #F4B6C2;
 }
